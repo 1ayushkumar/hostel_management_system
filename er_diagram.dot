@@ -1,0 +1,98 @@
+digraph G {
+    graph [rankdir=LR, splines=ortho];
+    node [shape=box, style=filled, fillcolor=lightblue];
+    edge [dir=none];
+
+    // Entities in rectangles
+    Staff [label="Staff"];
+    Block [label="Block"];
+    Room [label="Room"];
+    Student [label="Student"];
+    CommunityEvents [label="Community Events"];
+    EventRegistration [label="Event Registration"];
+    EventResources [label="Event Resources"];
+
+    // Staff attributes (ovals)
+    node [shape=oval, style=filled, fillcolor=lightgrey];
+    staff_id [label="StaffID\n(PK)"];
+    staff_fname [label="FirstName"];
+    staff_lname [label="LastName"];
+    staff_role [label="Role"];
+    staff_contact [label="ContactNumber"];
+    staff_email [label="EmailID\n(UQ)"];
+    staff_shift [label="ShiftTiming"];
+    staff_block [label="BlockAssigned\n(FK)"];
+
+    // Block attributes
+    block_id [label="BlockID\n(PK)"];
+    block_name [label="BlockName\n(UQ)"];
+    block_floors [label="NumberOfFloors"];
+    block_warden [label="WardenID\n(FK)"];
+    block_rooms [label="TotalRooms"];
+    block_gender [label="Gender"];
+
+    // Room attributes
+    room_id [label="RoomID\n(PK)"];
+    room_number [label="RoomNumber"];
+    room_block [label="BlockID\n(FK)"];
+    room_capacity [label="Capacity"];
+    room_type [label="RoomType"];
+    room_status [label="Status"];
+    room_rent [label="MonthlyRent"];
+
+    // Connect Staff attributes
+    Staff -> staff_id;
+    Staff -> staff_fname;
+    Staff -> staff_lname;
+    Staff -> staff_role;
+    Staff -> staff_contact;
+    Staff -> staff_email;
+    Staff -> staff_shift;
+    Staff -> staff_block;
+
+    // Connect Block attributes
+    Block -> block_id;
+    Block -> block_name;
+    Block -> block_floors;
+    Block -> block_warden;
+    Block -> block_rooms;
+    Block -> block_gender;
+
+    // Connect Room attributes
+    Room -> room_id;
+    Room -> room_number;
+    Room -> room_block;
+    Room -> room_capacity;
+    Room -> room_type;
+    Room -> room_status;
+    Room -> room_rent;
+
+    // Relationships between entities (diamond shape)
+    node [shape=diamond, fillcolor=lightyellow];
+    manages [label="manages"];
+    contains [label="contains"];
+    accommodates [label="accommodates"];
+
+    // Connect relationships
+    Staff -> manages [dir=none];
+    manages -> Block [dir=none];
+    Block -> contains [dir=none];
+    contains -> Room [dir=none];
+    Room -> accommodates [dir=none];
+    accommodates -> Student [dir=none];
+
+    // Cardinality labels
+    edge [dir=none, len=1];
+    {rank=same; Staff manages}
+    {rank=same; Block contains}
+    {rank=same; Room accommodates}
+
+    // Add cardinality labels
+    edge [dir=none, len=0.5];
+    Staff -> manages [label="1"];
+    manages -> Block [label="N"];
+    Block -> contains [label="1"];
+    contains -> Room [label="N"];
+    Room -> accommodates [label="1"];
+    accommodates -> Student [label="N"];
+}

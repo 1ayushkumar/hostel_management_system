@@ -1,0 +1,116 @@
+@startuml Hostel Management System ER Diagram
+
+' Styling
+skinparam roundcorner 10
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor DarkBlue
+}
+
+' Entities (Tables)
+entity "Staff" as staff {
+    * StaffID : INT <<PK>>
+    --
+    * FirstName : VARCHAR(50)
+    * LastName : VARCHAR(50)
+    * Role : ENUM
+    * ContactNumber : VARCHAR(15)
+    * EmailID : VARCHAR(100) <<UQ>>
+    * ShiftTiming : VARCHAR(50)
+    BlockAssigned : INT <<FK>>
+    CreatedAt : TIMESTAMP
+    UpdatedAt : TIMESTAMP
+}
+
+entity "Block" as block {
+    * BlockID : INT <<PK>>
+    --
+    * BlockName : VARCHAR(50) <<UQ>>
+    * NumberOfFloors : INT
+    WardenID : INT <<FK>>
+    * TotalRooms : INT
+    * Gender : ENUM
+    CreatedAt : TIMESTAMP
+}
+
+entity "Room" as room {
+    * RoomID : INT <<PK>>
+    --
+    * RoomNumber : VARCHAR(10)
+    * BlockID : INT <<FK>>
+    * Capacity : INT
+    * RoomType : ENUM
+    * Status : ENUM
+    * MonthlyRent : DECIMAL
+    CreatedAt : TIMESTAMP
+}
+
+entity "Student" as student {
+    * StudentID : INT <<PK>>
+    --
+    * FirstName : VARCHAR(50)
+    * LastName : VARCHAR(50)
+    * Gender : ENUM
+    * ContactNumber : VARCHAR(15)
+    * EmailID : VARCHAR(100) <<UQ>>
+    * Course : VARCHAR(100)
+    * Year : INT
+    RoomID : INT <<FK>>
+    * EmergencyContact : VARCHAR(15)
+    * JoiningDate : DATE
+    CreatedAt : TIMESTAMP
+}
+
+entity "Community_Events" as events {
+    * EventID : INT <<PK>>
+    --
+    * EventName : VARCHAR(100)
+    * OrganizerId : INT <<FK>>
+    * EventType : ENUM
+    * Capacity : INT
+    * SkillLevel : ENUM
+    ResourcesNeeded : TEXT
+    BlockID : INT <<FK>>
+    * RegistrationDeadline : DATETIME
+    AttendanceCount : INT
+    * EventDateTime : DATETIME
+    CreatedAt : TIMESTAMP
+}
+
+entity "Event_Registration" as registration {
+    * RegistrationID : INT <<PK>>
+    --
+    * EventID : INT <<FK>>
+    * StudentID : INT <<FK>>
+    * RegistrationDate : TIMESTAMP
+    * AttendanceStatus : ENUM
+    FeedbackRating : DECIMAL
+    Comments : TEXT
+}
+
+entity "Event_Resources" as resources {
+    * ResourceID : INT <<PK>>
+    --
+    * EventID : INT <<FK>>
+    * ResourceType : ENUM
+    * ResourceName : VARCHAR(100)
+    * Quantity : INT
+    * Status : ENUM
+    AssignedStaffID : INT <<FK>>
+    CreatedAt : TIMESTAMP
+}
+
+' Relationships with Cardinality
+staff "1" --o "0..*" block : manages >
+block "1" --o "0..*" room : contains >
+room "1" --o "0..*" student : accommodates >
+student "1" --o "0..*" events : organizes >
+block "1" --o "0..*" events : hosts >
+events "1" --o "0..*" registration : has >
+student "1" --o "0..*" registration : participates >
+events "1" --o "0..*" resources : requires >
+staff "1" --o "0..*" resources : manages >
+
+@enduml

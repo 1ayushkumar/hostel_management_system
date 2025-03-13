@@ -1,0 +1,96 @@
+@startuml Hostel Management System ER Diagram
+
+!define Table(name) class name << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+!define foreign_key(x) <i>x</i>
+
+Table(Staff) {
+    primary_key(StaffID)
+    FirstName
+    LastName
+    Role
+    ContactNumber
+    EmailID
+    foreign_key(BlockAssigned)
+    ShiftTiming
+    Password
+}
+
+Table(Block) {
+    primary_key(BlockID)
+    BlockName
+    NumberOfFloors
+    foreign_key(WardenID)
+    TotalRooms
+    Gender
+}
+
+Table(Room) {
+    primary_key(RoomID)
+    RoomNumber
+    foreign_key(BlockID)
+    Capacity
+    RoomType
+    Status
+    MonthlyRent
+}
+
+Table(Student) {
+    primary_key(StudentID)
+    FirstName
+    LastName
+    Gender
+    ContactNumber
+    EmailID
+    Course
+    Year
+    foreign_key(RoomID)
+    EmergencyContact
+    JoiningDate
+}
+
+Table(Community_Events) {
+    primary_key(EventID)
+    EventName
+    foreign_key(OrganizerId)
+    EventType
+    Capacity
+    SkillLevel
+    ResourcesNeeded
+    foreign_key(BlockID)
+    RegistrationDeadline
+    EventDateTime
+    AttendanceCount
+}
+
+Table(Event_Registration) {
+    primary_key(RegistrationID)
+    foreign_key(EventID)
+    foreign_key(StudentID)
+    AttendanceStatus
+    FeedbackRating
+    Comments
+}
+
+Table(Event_Resources) {
+    primary_key(ResourceID)
+    foreign_key(EventID)
+    ResourceType
+    ResourceName
+    Quantity
+    Status
+    foreign_key(AssignedStaffID)
+}
+
+' Relationships
+Block "1" -- "*" Room : contains >
+Block "1" -- "1" Staff : managed by >
+Room "1" -- "*" Student : accommodates >
+Staff "1" -- "*" Community_Events : organizes >
+Block "1" -- "*" Community_Events : hosts >
+Community_Events "1" -- "*" Event_Registration : has >
+Student "1" -- "*" Event_Registration : registers >
+Community_Events "1" -- "*" Event_Resources : requires >
+Staff "1" -- "*" Event_Resources : manages >
+
+@enduml
