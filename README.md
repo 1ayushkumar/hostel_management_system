@@ -68,3 +68,22 @@ SELECT * FROM EventParticipationStats;
 - Foreign key constraints ensure data integrity
 - Triggers automate attendance counting and validation
 - Views provide easy access to common queries
+
+
+##Screen Shots
+![Screenshot 2025-04-12 105320](https://github.com/user-attachments/assets/a3223368-0917-4d14-890a-edf3e6fb316c)
+![Screenshot 2025-04-12 110401](https://github.com/user-attachments/assets/38ee0963-16ca-46c4-acab-93a0ae515f49)
+![Screenshot 2025-04-12 110411](https://github.com/user-attachments/assets/997d8725-f1c5-4510-bf79-c53861dad87f)
+![Screenshot 2025-04-12 110419](https://github.com/user-attachments/assets/56df7b81-07c1-4449-83a3-4aa2d6822132)
+![Screenshot 2025-04-12 110425](https://github.com/user-attachments/assets/908de2db-1043-4a19-b05a-68ca78e9f6b4)
+
+
+
+
+
+
+
+
+
+
+
