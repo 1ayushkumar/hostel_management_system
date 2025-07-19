@@ -8,3 +8,8 @@ debug.php
 navbar-diagnostic.php
 navbar-simple-test.html
 test-navigation.php
+
+# Render deployment files (keep in repo for deployment)
+# render.yaml - keep this for deployment
+# deploy.sh - keep this for deployment
+# hostel_management_postgresql.sql - keep this for deployment

@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: hostel-management-system
+    env: php
+    plan: free
+    buildCommand: |
+      # Install dependencies if needed
+      echo "Building Hostel Management System..."
+    startCommand: |
+      # Start the PHP built-in server
+      php -S 0.0.0.0:$PORT -t .
+    envVars:
+      - key: PHP_VERSION
+        value: "8.1"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hostel-db
+          property: connectionString
+    
+  - type: pgsql
+    name: hostel-db
+    plan: free
+    databaseName: hostel_management
+    user: hostel_user
