@@ -1,1 +1,10 @@
 .qodo
+
+# Project documentation (for reference only, not uploaded to GitHub)
+PROJECT_DOCUMENTATION.md
+
+# Debug and test files
+debug.php
+navbar-diagnostic.php
+navbar-simple-test.html
+test-navigation.php
