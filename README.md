@@ -9,7 +9,7 @@
 
 **A modern web-based hostel management system with glassmorphism UI, mobile-responsive design, and comprehensive administrative features.**
 
-[🐛 Report Bug](https://github.com/1ayushkumar/hostel_management_system/issues) • [💡 Request Feature](https://github.com/1ayushkumar/hostel_management_system/issues)
+[� Live Demo](https://hostel-management-system-xxxx.onrender.com) • [�🐛 Report Bug](https://github.com/1ayushkumar/hostel_management_system/issues) • [💡 Request Feature](https://github.com/1ayushkumar/hostel_management_system/issues)
 
 </div>
 
